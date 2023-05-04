@@ -59,10 +59,10 @@ function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
 
     return `${padTime(hours)}:${padTime(minutes)}:${padTime(seconds)}`;
   };
-  
+
   return ReactDom.createPortal(
     <>
-    <div className={styles.overlay}></div>
+      <div className={styles.overlay}></div>
       <div className={styles.meetingTimer}>
         <div className={styles.header}>
           Estimated cost: {Math.round(expectedPrice * 100) / 100} €
@@ -75,7 +75,7 @@ function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
               text={`${price}€`}
               styles={buildStyles({
                 pathColor: "#4caf50",
-                textSize: '14px',
+                textSize: "14px",
               })}
             />
           )}
@@ -86,7 +86,7 @@ function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
               styles={buildStyles({
                 textColor: "red",
                 pathColor: "red",
-                textSize: '14px',
+                textSize: "14px",
               })}
             />
           )}
@@ -107,7 +107,8 @@ function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
           onClose={handleCloseSummary}
         />
       )}
-    </>, document.querySelector('#overlays')
+    </>,
+    document.querySelector("#overlays")
   );
 }
 
