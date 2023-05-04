@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ReactDom from "react-dom";
 import styles from "./MeetingTimer.module.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -19,7 +20,7 @@ function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
         const price = elapsedHours * spentPerHour;
         setPrice(price.toFixed(2));
         setProgress((price / expectedPrice) * 100);
-      }, 30000);
+      }, 1000);
 
       return () => clearInterval(intervalId);
     }
@@ -44,33 +45,51 @@ function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
     onClose();
   };
   const handleCloseSummary = () => {
-    setHasFinished(false)
-  }
+    setHasFinished(false);
+  };
 
   const formatTime = (time) => {
     const padTime = (time) => {
       return time.toString().padStart(2, "0");
     };
-  
+
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time - hours * 3600) / 60);
     const seconds = time - hours * 3600 - minutes * 60;
-  
+
     return `${padTime(hours)}:${padTime(minutes)}:${padTime(seconds)}`;
   };
-  return (
+  
+  return ReactDom.createPortal(
     <>
+    <div className={styles.overlay}></div>
       <div className={styles.meetingTimer}>
-        <div className={styles.header}>Expected price: {Math.round(expectedPrice*100)/100} €</div>
+        <div className={styles.header}>
+          Estimated cost: {Math.round(expectedPrice * 100) / 100} €
+        </div>
         <div className={styles.header}>{formatTime(seconds)}</div>
         <div className={styles.progress}>
-          <CircularProgressbar
-            value={progress}
-            text={`${price}€`}
-            styles={buildStyles({
-              pathColor: "#4caf50",
-            })}
-          />
+          {progress < 100 && (
+            <CircularProgressbar
+              value={progress}
+              text={`${price}€`}
+              styles={buildStyles({
+                pathColor: "#4caf50",
+                textSize: '14px',
+              })}
+            />
+          )}
+          {progress > 100 && (
+            <CircularProgressbar
+              value={progress}
+              text={`${price}€`}
+              styles={buildStyles({
+                textColor: "red",
+                pathColor: "red",
+                textSize: '14px',
+              })}
+            />
+          )}
         </div>
         <div className={styles.buttonContainer}>
           <button className={styles.button} onClick={handleMeetingFinished}>
@@ -82,9 +101,13 @@ function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
         </div>
       </div>
       {hasFinished && (
-        <MeetingSummary totalCost={price} expectedCost={expectedPrice} onClose={handleCloseSummary}/>
+        <MeetingSummary
+          totalCost={price}
+          expectedCost={expectedPrice}
+          onClose={handleCloseSummary}
+        />
       )}
-    </>
+    </>, document.querySelector('#overlays')
   );
 }
 

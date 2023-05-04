@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDom from "react-dom";
 import styles from './MeetingSummary.module.css';
 
 const MeetingSummary = ({ totalCost, expectedCost, onClose }) => {
@@ -7,7 +8,9 @@ const MeetingSummary = ({ totalCost, expectedCost, onClose }) => {
     const handleClose= () => {
         onClose()
     }
-  return (
+  return ReactDom.createPortal(
+    <>
+    <div className={styles.overlay}></div>
     <div className={styles.meetingSummary}>
       <h2 className={styles.title}>Meeting Summary</h2>
       <p>Total cost: {totalCost} €</p>
@@ -21,6 +24,7 @@ const MeetingSummary = ({ totalCost, expectedCost, onClose }) => {
             Return
           </button>
     </div>
+    </> , document.querySelector("#overlays")
   );
 };
 
