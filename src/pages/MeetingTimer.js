@@ -4,13 +4,13 @@ import styles from "./MeetingTimer.module.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import MeetingSummary from "./MeetingSummary";
+import Chronometer from "../components/Chronometer";
 
 function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
   const [price, setPrice] = useState(0);
   const [progress, setProgress] = useState(0);
   const [hasFinished, setHasFinished] = useState(false);
   const [stopTimer, setStopTimer] = useState(false);
-  const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
     if (!stopTimer) {
@@ -26,16 +26,6 @@ function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
     }
   }, [startTime, spentPerHour, expectedPrice, stopTimer]);
 
-  useEffect(() => {
-    if (!stopTimer) {
-      const intervalId = setInterval(() => {
-        setSeconds((seconds) => seconds + 1);
-      }, 1000);
-
-      return () => clearInterval(intervalId);
-    }
-  }, [stopTimer]);
-
   const handleMeetingFinished = () => {
     setStopTimer(true);
     setHasFinished(true);
@@ -48,18 +38,6 @@ function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
     setHasFinished(false);
   };
 
-  const formatTime = (time) => {
-    const padTime = (time) => {
-      return time.toString().padStart(2, "0");
-    };
-
-    const hours = Math.floor(time / 3600);
-    const minutes = Math.floor((time - hours * 3600) / 60);
-    const seconds = time - hours * 3600 - minutes * 60;
-
-    return `${padTime(hours)}:${padTime(minutes)}:${padTime(seconds)}`;
-  };
-
   return ReactDom.createPortal(
     <>
       <div className={styles.overlay}></div>
@@ -67,7 +45,7 @@ function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
         <div className={styles.header}>
           Estimated cost: {Math.round(expectedPrice * 100) / 100} €
         </div>
-        <div className={styles.header}>{formatTime(seconds)}</div>
+        <Chronometer onClose={stopTimer} />
         <div className={styles.progress}>
           {progress < 100 && (
             <CircularProgressbar

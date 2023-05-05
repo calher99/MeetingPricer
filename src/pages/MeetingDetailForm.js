@@ -57,6 +57,7 @@ function MeetingDetailForm() {
                 onChange={handleChange.bind(i)}
               />
             </div>
+            
             <div className={styles.dynamicFormRemove}>
               {isHourlyRate && (
                 <input
@@ -67,7 +68,9 @@ function MeetingDetailForm() {
                 />
               )}
             </div>
+            
           </div>
+      
         </>
       );
     });
