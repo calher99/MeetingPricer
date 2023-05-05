@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock } from "@fortawesome/free-regular-svg-icons";
 
-const element = <FontAwesomeIcon icon={faClock} />;
+import styles from "./Chronometer.module.css";
 
 const Chronometer = (props) => {
   const [seconds, setSeconds] = useState(0);
@@ -27,8 +25,8 @@ const Chronometer = (props) => {
   };
 
   return (
-    <div className="timer">
-      <p>{formatTime()}</p>
+    <div className={styles.timer}>
+      <p className={styles.timer}>{formatTime()}</p>
     </div>
   );
 };

@@ -20,7 +20,7 @@ function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
         const price = elapsedHours * spentPerHour;
         setPrice(price.toFixed(2));
         setProgress((price / expectedPrice) * 100);
-      }, 1000);
+      }, 30000);
 
       return () => clearInterval(intervalId);
     }
@@ -45,7 +45,10 @@ function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
         <div className={styles.header}>
           Estimated cost: {Math.round(expectedPrice * 100) / 100} €
         </div>
-        <Chronometer onClose={stopTimer} />
+        <div className={styles.timer}>
+          <Chronometer onClose={stopTimer} />
+        </div>
+
         <div className={styles.progress}>
           {progress < 100 && (
             <CircularProgressbar
