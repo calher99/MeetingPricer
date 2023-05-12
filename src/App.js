@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MeetingDetailForm from "./pages/MeetingDetailForm";
 import MeetingTimer from "./pages/MeetingTimer";
+import DynamicForm from "./pages/DynamicForm";
+
 
 const router = createBrowserRouter([
   {path: "/", element: <MeetingDetailForm/>},
@@ -10,7 +12,9 @@ const router = createBrowserRouter([
 function App() {
   
   return (
-    <RouterProvider router={router}/>
+    // <RouterProvider router={router}/>
+    <DynamicForm></DynamicForm>
+  
   );
 }
 

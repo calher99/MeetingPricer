@@ -8,7 +8,6 @@
   height: 100%;
   max-width: 600px;
   padding: 20px;
-  font-family: "Comfortaa";
 }
 
 .form h1 {
@@ -39,9 +38,15 @@
   max-width: 200px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .form input[type="button"],
 .form input[type="submit"] {
-  background-color: #4caf50;
+  background-color: #8bc34a;
   color: white;
   padding: 10px;
   border: none;

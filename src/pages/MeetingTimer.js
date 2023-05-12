@@ -55,19 +55,20 @@ function MeetingTimer({ startTime, spentPerHour, onClose, expectedPrice }) {
               value={progress}
               text={`${price}€`}
               styles={buildStyles({
-                pathColor: "#4caf50",
+                pathColor: "#8bc34a",
                 textSize: "14px",
               })}
             />
           )}
           {progress > 100 && (
             <CircularProgressbar
-              value={progress}
+              value={progress-100}
               text={`${price}€`}
               styles={buildStyles({
                 textColor: "red",
                 pathColor: "red",
                 textSize: "14px",
+                trailColor: '#8bc34a',
               })}
             />
           )}

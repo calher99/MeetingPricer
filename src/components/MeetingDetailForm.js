@@ -16,7 +16,7 @@ function MeetingDetailForm() {
       const isAttendees = i % 3 === 1;
       const isHourlyRate = i % 3 === 2;
       return (
-        <>
+        
           <div key={i} className={styles.dynamicFormAll}>
             <div className={styles.dynamicFormLabelInput}>
               {isJobCategory && (
@@ -71,7 +71,7 @@ function MeetingDetailForm() {
             
           </div>
       
-        </>
+        
       );
     });
   }
@@ -79,6 +79,11 @@ function MeetingDetailForm() {
   function handleChange(event) {
     let vals = [...values.val];
     vals[this] = event.target.value;
+    console.log(vals)
+    console.log(vals.length)
+    if(parseInt(vals[1])<0){
+      
+    }
     setValues({ val: vals });
   }
 
