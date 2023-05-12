@@ -5,6 +5,7 @@ import styles from "./Chronometer.module.css";
 const Chronometer = (props) => {
   const [seconds, setSeconds] = useState(0);
 
+
   useEffect(() => {
     if (!props.onClose) {
       const intervalId = setInterval(() => {
