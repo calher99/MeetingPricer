@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import MeetingTimer from "./MeetingTimer";
+import MeetingTimer from "../pages/MeetingTimer";
 import styles from "./MeetingDetailForm.module.css";
 
 function MeetingDetailForm() {
