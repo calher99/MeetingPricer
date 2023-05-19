@@ -1,15 +1,7 @@
-
-import DynamicForm from "./pages/DynamicForm";
-
-
+import MeetingForm from "./pages/MeetingForm";
 
 function App() {
-  
-  return (
-
-    <DynamicForm></DynamicForm>
-  
-  );
+  return <MeetingForm></MeetingForm>;
 }
 
 export default App;
