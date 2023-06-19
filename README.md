@@ -2,14 +2,10 @@
 
 MeetingPricer is a cost estimation tool for meetings. It is designed to calculate the expected cost of a meeting based on the duration and hourly rate of each attendee's job position. You can also save job positions and their respective hourly rates for later use.
 
-## Table of Contents
+## Screenshots
 
-Features
-Getting Started
-Deployment
-Usage
-Contributing
-Screenshots
+![My Remote Image](https://www.dropbox.com/s/rgug8na0msb8cvq/Screenshot%202023-06-19%20at%2017.14.54.png?dl=0)
+![My Remote Image](https://www.dropbox.com/s/4vngth8tr0lph0v/Screenshot%202023-06-19%20at%2017.12.39.png?dl=0)
 
 ## Features
 
